@@ -18,6 +18,10 @@ clean:
 	rm *.o *.bin *.so || true
 
 lib$(NAME).so: $(NAME).c
+	rm *.o || true
 	gcc -shared -o lib$(NAME).so -fPIC $(NAME).c
 
 so: lib$(NAME).so
+
+test: so
+	export LD_LIBRARY_PATH="$(shell pwd)" && pytest
