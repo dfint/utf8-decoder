@@ -4,8 +4,8 @@
 
 uint32_t * decode_utf8(uint32_t *out_buffer, unsigned char *in_buffer)
 {
-    while (*in_buffer) {
-        unsigned char c = *in_buffer++;
+    unsigned char c;
+    while (c = *in_buffer++) {
         uint32_t w;
         if (c < 0b11000000) {
             w = (uint32_t)c;

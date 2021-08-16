@@ -12,12 +12,23 @@ def libutf8_decoder():
 
 
 @pytest.mark.parametrize("text", [
-    "abcd"
+    "abcd",
+    # "Hello!",
+    # "Привет!",
+    # "你好",
+    # "🏠",
 ])
 def test_utf8_decoder(libutf8_decoder, text):
     lib = libutf8_decoder
+    lib.decode_utf8.restype = c_ulonglong
     array_size = len(text.encode('utf-16-le')) // 2
     buffer = (c_ulong * array_size)()
-    result = lib.decode_utf8(buffer, text)
+
+    result = lib.decode_utf8(buffer, c_char_p(text.encode('utf-8')))
+
+    result_size = result - addressof(buffer)
+    assert result_size // 4 == array_size
+
     print(list(buffer))
-    assert False
+    utf16_le_bytes = b''.join(map(lambda x: x.to_bytes(2, byteorder='little'), buffer))
+    assert utf16_le_bytes == text.encode('utf-16-le')
