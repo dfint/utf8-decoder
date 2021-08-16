@@ -2,6 +2,7 @@ import pytest
 
 from decode_utf8 import decode_utf8
 
+
 @pytest.mark.parametrize("text",
 [
     "Привет!",
