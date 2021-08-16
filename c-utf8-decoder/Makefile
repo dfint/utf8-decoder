@@ -16,4 +16,9 @@ $(NAME).bin: $(NAME).o
 bin: $(NAME).bin
 
 clean:
-	rm *.o *.bin
+	rm *.o *.bin *.so || true
+
+lib$(NAME).so: $(NAME).c
+	gcc -shared -o lib$(NAME).so -fPIC $(NAME).c
+
+so: lib$(NAME).so
