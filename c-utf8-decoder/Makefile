@@ -2,10 +2,11 @@
 all: bin
 
 CC=gcc
+CFLAGS=-O3
 NAME=utf8_decoder
 
 $(NAME).o: $(NAME).c
-	$(CC) -c $(NAME).c
+	$(CC) $(CFLAGS) -c $(NAME).c
 
 compile: $(NAME).o
 
