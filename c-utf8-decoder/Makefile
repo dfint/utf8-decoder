@@ -1,5 +1,4 @@
-.PHONY: compile bin clean
-all: bin
+.PHONY: compile bin clean so
 
 CC=gcc
 CFLAGS=-O3
