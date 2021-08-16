@@ -5,6 +5,7 @@ from decode_utf8 import decode_utf8
 
 @pytest.mark.parametrize("text",
 [
+    "Hello!",
     "Привет!",
     "你好"
 ])
