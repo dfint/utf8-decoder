@@ -27,8 +27,8 @@ def decode_utf8(s: bytes):
             w = shift_1(s, w)
             w = shift_1(s, w)
             w = shift_1(s, w)
-        else:
-            w = c & 1
+        else:  # < 0xFE
+            w = c & 0x01
             w = shift_1(s, w)
             w = shift_1(s, w)
             w = shift_1(s, w)
@@ -38,5 +38,7 @@ def decode_utf8(s: bytes):
         if w < 0x10000:
             yield w
         else:
-            yield 0xD7C0 | (w >> 10)
-            yield 0xDC00 | (w & 0x3FF)
+            # Convert full 32-bit code into utf-16
+            w -= 0x10000
+            yield 0xD800 | (w >> 10)  # higher 10 bits
+            yield 0xDC00 | (w & 0x3FF)  # lower 10 bits

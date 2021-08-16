@@ -7,7 +7,8 @@ from decode_utf8 import decode_utf8
 [
     "Hello!",
     "Привет!",
-    "你好"
+    "你好",
+    "🏠",
 ])
 def test(text):
     encoded_utf8 = text.encode('utf-8')
