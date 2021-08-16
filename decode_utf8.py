@@ -7,28 +7,28 @@ def decode_utf8(s: bytes):
     s = list(s)
     while s:
         c = s.pop(0)
-        if c < 0xC0:
+        if c < 0b11_000000:
             w = c
-        elif c < 0xE0:
-            w = c & 0x1F
+        elif c < 0b111_00000:
+            w = c & 0b000_11111
             w = shift_1(s, w)
-        elif c < 0xF0:
-            w = c & 0x0F
-            w = shift_1(s, w)
-            w = shift_1(s, w)
-        elif c < 0xF8:
-            w = c & 0x07
+        elif c < 0b1111_0000:
+            w = c & 0b0000_1111
             w = shift_1(s, w)
             w = shift_1(s, w)
-            w = shift_1(s, w)
-        elif c < 0xFC:
-            w = c & 0x03
+        elif c < 0b11111_000:
+            w = c & 0b00000_111
             w = shift_1(s, w)
             w = shift_1(s, w)
             w = shift_1(s, w)
+        elif c < 0b111111_00: 
+            w = c & 0b000000_11
             w = shift_1(s, w)
-        else:  # < 0xFE
-            w = c & 0x01
+            w = shift_1(s, w)
+            w = shift_1(s, w)
+            w = shift_1(s, w)
+        else:  # < 0b1111111_0
+            w = c & 0b0000000_1
             w = shift_1(s, w)
             w = shift_1(s, w)
             w = shift_1(s, w)
