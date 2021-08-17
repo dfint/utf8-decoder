@@ -42,7 +42,7 @@ def decode_utf8(s: bytes):
         elif c < 0b111111_00: 
             w = c & 0b000000_11
             w = shift_4(s, w)
-        else:  # < 0b1111111_0
+        else:  # c < 0b1111111_0
             w = c & 0b0000000_1
             w = shift_5(s, w)
         

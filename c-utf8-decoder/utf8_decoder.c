@@ -27,7 +27,7 @@ uint32_t * decode_utf8(uint32_t *out_buffer, unsigned char *in_buffer)
             w = shift_1(in_buffer, w);
             w = shift_1(in_buffer, w);
             w = shift_1(in_buffer, w);
-        } else {  // < 0b1111111_0
+        } else {  // c < 0b11111110
             w = c & 0b00000001;
             w = shift_1(in_buffer, w);
             w = shift_1(in_buffer, w);
