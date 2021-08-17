@@ -20,7 +20,7 @@ def libutf8_decoder():
 ])
 def test_utf8_decoder(libutf8_decoder, text):
     lib = libutf8_decoder
-    lib.decode_utf8.restype = c_ulonglong
+    lib.decode_utf8.restype = c_void_p
     array_size = len(text.encode('utf-16-le')) // 2
     buffer = (c_uint32 * array_size)()
 
