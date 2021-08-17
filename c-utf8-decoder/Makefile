@@ -1,4 +1,4 @@
-.PHONY: compile bin clean so
+.PHONY: compile bin clean so test pytest
 
 CC=gcc
 CFLAGS=-O3
