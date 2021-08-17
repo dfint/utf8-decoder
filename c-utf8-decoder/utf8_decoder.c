@@ -42,7 +42,7 @@ uint32_t * decode_utf8(uint32_t *out_buffer, unsigned char *in_buffer)
             // Convert full 32-bit code into utf-16
             w -= 0x10000;
             *out_buffer++ = 0xD800 | (w >> 10);  // higher 10 bits
-            *out_buffer++ = 0xD800 | (w & 0x3FF);  // lower 10 bits
+            *out_buffer++ = 0xDC00 | (w & 0x3FF);  // lower 10 bits
         }
     }
 

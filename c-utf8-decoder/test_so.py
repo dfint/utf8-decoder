@@ -16,7 +16,7 @@ def libutf8_decoder():
     "Hello!",
     "Привет!",
     "你好",
-    # "🏠",
+    "🏠",
 ])
 def test_utf8_decoder(libutf8_decoder, text):
     lib = libutf8_decoder
