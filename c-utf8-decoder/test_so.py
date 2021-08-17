@@ -29,7 +29,6 @@ def test_utf8_decoder(libutf8_decoder, text):
 
     result_size = (result - addressof(buffer)) // sizeof(c_uint32)
     assert result_size == array_size
-
-    print(list(buffer))
+    
     utf16_le_bytes = b''.join(map(lambda x: x.to_bytes(2, byteorder='little'), buffer))
     assert utf16_le_bytes == text.encode('utf-16-le')
