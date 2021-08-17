@@ -1,4 +1,4 @@
-name: C UTF-8 Decoder Prototype Test
+name: C UTF-8 Decoder Test
 
 on:
   push:

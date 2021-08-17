@@ -1,4 +1,4 @@
-name: Python UTF-8 Decoder Prototype Test
+name: Python UTF-8 Decoder Test
 
 on:
   push:
