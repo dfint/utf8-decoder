@@ -54,7 +54,7 @@ uint32_t * decode_utf8(uint32_t *out_buffer, unsigned char *in_buffer)
     return out_buffer;
 }
 
-
+/*
 uint32_t shift(unsigned char ** pbuffer, uint32_t w, int n) {
     unsigned char * buffer = *pbuffer;
     for (int i; i < n; i++) {
@@ -62,3 +62,4 @@ uint32_t shift(unsigned char ** pbuffer, uint32_t w, int n) {
     }
     return w;
 }
+*/
