@@ -15,7 +15,7 @@ $(NAME).bin: $(NAME).o
 bin: $(NAME).bin
 
 clean:
-	rm *.o *.bin *.so || true
+	rm *.o *.bin *.so *.out || true
 
 lib$(NAME).so: $(NAME).c
 	rm *.o || true
@@ -23,5 +23,9 @@ lib$(NAME).so: $(NAME).c
 
 so: lib$(NAME).so
 
-test: so
+pytest: so
 	export LD_LIBRARY_PATH="$(shell pwd)" && pytest
+
+test:
+	$(CC) $(CFLAGS) test.c $(NAME).c
+	./a.out
