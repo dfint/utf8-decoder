@@ -1,6 +1,9 @@
 #include <stdint.h>
 
-#define SHIFT_1(s, w) (w << 6 | *s++ & 0x3F)
+#define SHIFT_1(s, w) (w << 6 | *(s)++ & 0x3F)
+
+uint32_t shift(unsigned char ** pbuffer, uint32_t w, int n);
+
 
 uint32_t * decode_utf8(uint32_t *out_buffer, unsigned char *in_buffer)
 {
@@ -12,10 +15,12 @@ uint32_t * decode_utf8(uint32_t *out_buffer, unsigned char *in_buffer)
         } else if (c < 0b11100000) {
             w = c & 0b00011111;
             w = SHIFT_1(in_buffer, w);
+            // w = shift(&in_buffer, w, 1);
         } else if (c < 0b11110000) {
             w = c & 0b00001111;
             w = SHIFT_1(in_buffer, w);
             w = SHIFT_1(in_buffer, w);
+            // w = shift(&in_buffer, w, 2);
         } else if (c < 0b11111000) {
             w = c & 0b00000111;
             w = SHIFT_1(in_buffer, w);
@@ -49,3 +54,11 @@ uint32_t * decode_utf8(uint32_t *out_buffer, unsigned char *in_buffer)
     return out_buffer;
 }
 
+
+uint32_t shift(unsigned char ** pbuffer, uint32_t w, int n) {
+    unsigned char * buffer = *pbuffer;
+    for (int i; i < n; i++) {
+        w = SHIFT_1(buffer, w);
+    }
+    return w;
+}
