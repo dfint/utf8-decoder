@@ -19,7 +19,7 @@ clean:
 
 lib$(NAME).so: $(NAME).c
 	rm *.o || true
-	gcc -shared -o lib$(NAME).so -fPIC $(NAME).c
+	$(CC) -shared -o lib$(NAME).so -fPIC $(NAME).c
 
 so: lib$(NAME).so
 
