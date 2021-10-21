@@ -5,4 +5,4 @@
 
 A prototype of a minimalistic utf-8 to utf-16 converter. Includes implementations in Python and C.
 
-Why? To patch standard DF [cp437_to_unicode](https://github.com/svenstaro/dwarf_fortress_unfuck/blob/4dd42cda9d439d9cf89a32f1f57a54836e6723ce/g_src/ttf_manager.cpp#L59) to add support of utf-8.
+Why? To patch standard DF [cp437_to_unicode](https://github.com/svenstaro/dwarf_fortress_unfuck/blob/4dd42cda9d439d9cf89a32f1f57a54836e6723ce/g_src/ttf_manager.cpp#L59) function to add support of utf-8.
