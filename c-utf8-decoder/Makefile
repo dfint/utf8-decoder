@@ -24,7 +24,7 @@ lib$(NAME).so: $(NAME).c
 so: lib$(NAME).so
 
 pytest: so
-	export LD_LIBRARY_PATH="$(shell pwd)" && pytest
+	pytest
 
 test:
 	$(CC) $(CFLAGS) test.c $(NAME).c
