@@ -1,14 +1,11 @@
-import os
-
 from ctypes import *
-from pathlib import Path
 
 import pytest
 
 
 @pytest.fixture(scope="module")
 def decode_utf8():
-    lib = cdll.LoadLibrary("libutf8_decoder.so")
+    lib = cdll.LoadLibrary("./libutf8_decoder.so")
     lib.decode_utf8.restype = c_void_p
     return lib.decode_utf8
 
