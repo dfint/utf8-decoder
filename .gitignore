@@ -1,4 +1,5 @@
 .vscode/
+.hypothesis/
 *.pyc
 .coverage
 htmlcov

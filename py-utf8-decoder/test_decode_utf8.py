@@ -1,15 +1,13 @@
-import pytest
+from hypothesis import given, example, strategies as st
 
 from decode_utf8 import decode_utf8
 
 
-@pytest.mark.parametrize("text",
-[
-    "Hello!",
-    "Привет!",
-    "你好",
-    "🏠",
-])
+@given(st.text())
+@example("Hello!")
+@example("Привет!")
+@example("你好")
+@example("🏠")
 def test(text):
     encoded_utf8 = text.encode('utf-8')
     utf16_byte_pairs = decode_utf8(encoded_utf8)

@@ -1,5 +1,7 @@
 from ctypes import *
 
+from hypothesis import given, example, strategies as st
+
 import pytest
 
 
@@ -10,13 +12,11 @@ def decode_utf8():
     return lib.decode_utf8
 
 
-@pytest.mark.parametrize("text", [
-    "abcd",
-    "Hello!",
-    "Привет!",
-    "你好",
-    "🏠",
-])
+@given(st.text(st.characters(blacklist_characters="\x00")))
+@example("Hello!")
+@example("Привет!")
+@example("你好")
+@example("🏠")
 def test_utf8_decoder(decode_utf8, text):
     array_size = len(text.encode('utf-16-le')) // 2
     buffer = (c_uint32 * array_size)()
