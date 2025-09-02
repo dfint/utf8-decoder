@@ -23,7 +23,6 @@ def shift_5(s, w):
     return shift_4(s, w)
 
 
-
 def decode_utf8(s: bytes):
     s = list(s)
     while s:
@@ -39,13 +38,13 @@ def decode_utf8(s: bytes):
         elif c < 0b11111_000:
             w = c & 0b00000_111
             w = shift_3(s, w)
-        elif c < 0b111111_00: 
+        elif c < 0b111111_00:
             w = c & 0b000000_11
             w = shift_4(s, w)
         else:  # c < 0b1111111_0
             w = c & 0b0000000_1
             w = shift_5(s, w)
-        
+
         if w < 0x10000:
             yield w
         else:

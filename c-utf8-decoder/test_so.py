@@ -1,8 +1,8 @@
-from ctypes import cdll, c_void_p, c_uint32, addressof, sizeof
-
-from hypothesis import given, example, strategies as st
+from ctypes import addressof, c_uint32, c_void_p, cdll, sizeof
 
 import pytest
+from hypothesis import example, given
+from hypothesis import strategies as st
 
 
 @pytest.fixture(scope="module")
@@ -19,16 +19,16 @@ def decode_utf8():
 @example("🏠")
 def test_utf8_decoder(decode_utf8, text):
     try:
-        array_size = len(text.encode('utf-16-le')) // 2
+        array_size = len(text.encode("utf-16-le")) // 2
     except UnicodeEncodeError:
         return
 
     buffer = (c_uint32 * array_size)()
 
-    result = decode_utf8(buffer, text.encode('utf-8'))
+    result = decode_utf8(buffer, text.encode("utf-8"))
 
     result_size = (result - addressof(buffer)) // sizeof(c_uint32)
     assert result_size == array_size
-    
-    utf16_le_bytes = b''.join(map(lambda x: x.to_bytes(2, byteorder='little'), buffer))
-    assert utf16_le_bytes == text.encode('utf-16-le')
+
+    utf16_le_bytes = b"".join(map(lambda x: x.to_bytes(2, byteorder="little"), buffer))
+    assert utf16_le_bytes == text.encode("utf-16-le")
