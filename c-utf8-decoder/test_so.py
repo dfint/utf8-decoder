@@ -17,9 +17,12 @@ def decode_utf8():
 @example("Привет!")
 @example("你好")
 @example("🏠")
-@pytest.mark.xfail(raises=UnicodeEncodeError)
 def test_utf8_decoder(decode_utf8, text):
-    array_size = len(text.encode('utf-16-le')) // 2
+    try:
+        array_size = len(text.encode('utf-16-le')) // 2
+    except UnicodeEncodeError:
+        return
+
     buffer = (c_uint32 * array_size)()
 
     result = decode_utf8(buffer, text.encode('utf-8'))
