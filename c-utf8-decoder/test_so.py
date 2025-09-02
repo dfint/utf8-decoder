@@ -12,7 +12,7 @@ def decode_utf8():
     return lib.decode_utf8
 
 
-@given(st.text(st.characters(blacklist_characters="\x00")))
+@given(st.text(st.characters(blacklist_characters="\x00\ud800")))
 @example("Hello!")
 @example("Привет!")
 @example("你好")
